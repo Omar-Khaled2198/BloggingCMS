@@ -25,12 +25,49 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::get('/post/create',[
 
         'uses' => 'PostController@create',
-        'as' => 'post.create'
+        'as' => 'PostForm'
     ]);
 
     Route::post('post/store',[
 
         'uses' => 'PostController@store',
-        'as' => 'post.store'
+        'as' => 'CreatePost'
     ]);
+
+    Route::get('/category/index',[
+
+        'uses' => 'CategoryController@index',
+        'as' => 'Categories'
+    ]);
+
+    Route::get('/category/create',[
+
+        'uses' => 'CategoryController@create',
+        'as' => 'CategoryForm'
+    ]);
+
+    Route::post('category/store',[
+
+        'uses' => 'CategoryController@store',
+        'as' => 'CreateCategory'
+    ]);
+
+    Route::get('/category/edit/{id}',[
+
+        'uses' => 'CategoryController@edit',
+        'as' => 'EditCategory'
+    ]);
+
+    Route::post('/category/update/{id}',[
+
+        'uses' => 'CategoryController@update',
+        'as' => 'UpdateCategory'
+    ]);
+
+    Route::get('/category/delete/{id}',[
+
+        'uses' => 'CategoryController@destroy',
+        'as' => 'DeleteCategory'
+    ]);
+
 });

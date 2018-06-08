@@ -77,16 +77,24 @@
                                 <a href="{{route('home')}}">Home</a>
                             </li>
                             <li class="list-group-item">
-                                <a href="{{route('post.create')}}">Create New Post</a>
+                                <a href="{{route('PostForm')}}">Create New Post</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{route('Categories')}}">Categories</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{route('CategoryForm')}}">Create New Category</a>
                             </li>
                         </ul>
                     </div>
-                @endif
-
-
-                <div class="col-lg-8">
+                    <div class="col-lg-8">
+                        @yield('content')
+                    </div>
+                @else
+                <div class="col-lg-12">
                     @yield('content')
                 </div>
+                @endif
             </div>
         </div>
 
