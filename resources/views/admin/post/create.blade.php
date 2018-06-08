@@ -9,7 +9,7 @@
             Create Post Form
         </div>
         <div class="card-body">
-            <form action="{{route('CreatePost')}}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('CreatePost')}}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="form-group">
                     <label for="title">Title</label>
@@ -18,6 +18,14 @@
                 <div class="form-group">
                     <label for="image">Image</label>
                     <input type="file" name="image" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="category_id">Content</label>
+                    <select type="text" name="category_id" class="form-control">
+                        @foreach($categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="content">Content</label>

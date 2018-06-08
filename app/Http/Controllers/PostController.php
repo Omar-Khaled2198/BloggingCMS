@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -23,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.post.create');
+        return view('admin.post.create')->with('categories',Category::all());
     }
 
     /**
@@ -37,8 +39,25 @@ class PostController extends Controller
         $this->validate($request,[
             'title'=>'required|max:100',
             'image'=>'required|image',
+            'category_id'=>'required',
             'content'=>'required'
         ]);
+
+        $image=$request->image;
+
+        $name=time().$image->getClientOriginalName();
+        $image->move('upload/posts',$name);
+
+        $post=Post::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'category_id' => $request->category_id,
+            'image' => 'upload/posts/'.$name,
+            'slug'=> str_slug($request->title)
+
+        ]);
+
+        $post->save();
 
         return redirect()->back();
     }
