@@ -77,14 +77,21 @@
                                 <a href="{{route('home')}}">Home</a>
                             </li>
                             <li class="list-group-item">
-                                <a href="{{route('PostForm')}}">Create New Post</a>
+                                <a href="{{route('Posts')}}">Posts</a>
                             </li>
                             <li class="list-group-item">
                                 <a href="{{route('Categories')}}">Categories</a>
                             </li>
                             <li class="list-group-item">
+                                <a href="{{route('DeletedPosts')}}">Deleted Posts</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{route('PostForm')}}">Create New Post</a>
+                            </li>
+                            <li class="list-group-item">
                                 <a href="{{route('CategoryForm')}}">Create New Category</a>
                             </li>
+
                         </ul>
                     </div>
                     <div class="col-lg-8">
