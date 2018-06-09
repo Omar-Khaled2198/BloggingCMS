@@ -11,10 +11,19 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        App\User::create([
+        $user=App\User::create([
             'name'=>'Omar Khaled',
             'email'=>'omar21621@gmail.com',
-            'password'=>bcrypt('123456789')
+            'password'=>bcrypt('123456789'),
+            'admin'=>'1'
+        ]);
+
+        App\Profile::create([
+            'user_id'=>$user->id,
+            'avatar'=>'upload/avatars/avatar.png',
+            'about'=>'Backend Web Developer',
+            'facebook'=>'facebok.com'
+
         ]);
     }
 }

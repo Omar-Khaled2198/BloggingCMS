@@ -20,12 +20,21 @@
                     <input type="file" name="image" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="category_id">Content</label>
+                    <label for="category_id">Category</label>
                     <select type="text" name="category_id" class="form-control">
                         @foreach($categories as $category)
                             <option value="{{$category->id}}">{{$category->name}}</option>
                         @endforeach
                     </select>
+                </div>
+                <div class="form-group">
+                    <label for="tags">Tags</label>
+                    <br>
+                    @foreach($tags as $tag)
+                        <div class="form-check-inline">
+                           <label><input type="checkbox" name="tags[]" value="{{$tag->id}}">{{$tag->tag}}</label>
+                        </div>
+                    @endforeach
                 </div>
                 <div class="form-group">
                     <label for="content">Content</label>

@@ -15,11 +15,11 @@ class Post extends Model
     ];
     function category()
     {
-        return $this->belongsTo('App/Category');
+        return $this->belongsTo('App\Category');
     }
 
     function tags()
     {
-        return $this->belongsTo('App/Tag');
+        return $this->belongsToMany('App\Tag');
     }
 }

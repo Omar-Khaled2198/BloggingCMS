@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Tag;
 use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.post.create')->with('categories',Category::all());
+        return view('admin.post.create')->with('categories',Category::all())->with('tags',Tag::all());
     }
 
     /**
@@ -52,12 +53,12 @@ class PostController extends Controller
             'title' => $request->title,
             'content' => $request->content,
             'category_id' => $request->category_id,
-            'image' => 'upload/posts'.$name,
+            'image' => 'upload/posts/'.$name,
             'slug'=> str_slug($request->title)
 
         ]);
 
-        $post->save();
+        $post->tags()->attach($request->tags);
 
         return redirect()->back();
     }
@@ -81,7 +82,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.post.edit')->with('post',Post::find($id))->with('categories',Category::all());
+        return view('admin.post.edit')->with('post',Post::find($id))
+            ->with('categories',Category::all())
+            ->with('tags',Tag::all());
     }
 
     /**
@@ -107,8 +110,8 @@ class PostController extends Controller
             $image=$request->image;
 
             $name=time().$image->getClientOriginalName();
-            $image->move('upload/posts',$name);
-            $post->image='upload/posts'.$name;
+            $image->move('upload/posts/',$name);
+            $post->image='upload/posts/'.$name;
 
         }
 
@@ -117,6 +120,8 @@ class PostController extends Controller
         $post->category_id=$request->category_id;
 
         $post->save();
+
+        $post->tags()->sync($request->tags);
 
         return redirect()->route('Posts');
     }

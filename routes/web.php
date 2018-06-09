@@ -153,5 +153,12 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
         'uses' => 'TagController@destroy',
         'as' => 'DeleteTag'
     ]);
+    //////////////////////////////////////////////////////////
+
+    Route::get('/user/index',[
+
+        'uses' => 'UserController@index',
+        'as' => 'Users'
+    ]);
 
 });

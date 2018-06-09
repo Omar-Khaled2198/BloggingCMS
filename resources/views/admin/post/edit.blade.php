@@ -23,10 +23,23 @@
                     <label for="category_id">Content</label>
                     <select type="text" name="category_id" class="form-control">
                         @foreach($categories as $category)
-                            <option value="{{$category->id}}">{{$category->name}}</option>
+                            <option value="{{$category->id}}"
+                            @if($category->id==$post->category_id)
+                                selected
+                            @endif>{{$category->name}}</option>
                         @endforeach
                     </select>
                 </div>
+                @foreach($tags as $tag)
+                    <div class="form-check-inline">
+                        <label><input type="checkbox" name="tags[]" value="{{$tag->id}}"
+                            @foreach($post->tags as $t)
+                                    @if($tag->id==$t->id)
+                                        checked
+                                    @endif
+                                    @endforeach>{{$tag->tag}}</label>
+                    </div>
+                @endforeach
                 <div class="form-group">
                     <label for="content">Content</label>
                     <textarea type="text" name="content" class="form-control">{{$post->content}}</textarea>
