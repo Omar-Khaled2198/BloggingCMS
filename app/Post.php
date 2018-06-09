@@ -17,4 +17,9 @@ class Post extends Model
     {
         return $this->belongsTo('App/Category');
     }
+
+    function tags()
+    {
+        return $this->belongsTo('App/Tag');
+    }
 }

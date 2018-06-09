@@ -52,7 +52,7 @@ class PostController extends Controller
             'title' => $request->title,
             'content' => $request->content,
             'category_id' => $request->category_id,
-            'image' => 'upload/posts/'.$name,
+            'image' => 'upload/posts'.$name,
             'slug'=> str_slug($request->title)
 
         ]);
@@ -81,7 +81,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.post.edit')->with('post',Post::find($id))->with('categories',Category::all());
     }
 
     /**
@@ -93,7 +93,32 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $this->validate($request,[
+            'title'=>'required|max:100',
+            'category_id'=>'required',
+            'content'=>'required'
+        ]);
+
+        $post=Post::find($id);
+
+        if($request->hasFile('image'))
+        {
+            $image=$request->image;
+
+            $name=time().$image->getClientOriginalName();
+            $image->move('upload/posts',$name);
+            $post->image='upload/posts'.$name;
+
+        }
+
+        $post->title=$request->title;
+        $post->content=$request->content;
+        $post->category_id=$request->category_id;
+
+        $post->save();
+
+        return redirect()->route('Posts');
     }
 
     /**
@@ -114,5 +139,23 @@ class PostController extends Controller
     public function deleted()
     {
         return view('admin.post.deleted')->with('deleted',Post::onlyTrashed()->get());
+    }
+
+    public function deletePermanently($id)
+    {
+        $post=Post::onlyTrashed()->where('id',$id)->first();
+
+        $post->forceDelete();
+
+        return redirect()->back();
+    }
+
+    public function restore($id)
+    {
+        $post=Post::onlyTrashed()->where('id',$id)->first();
+
+        $post->restore();
+
+        return redirect()->back();
     }
 }

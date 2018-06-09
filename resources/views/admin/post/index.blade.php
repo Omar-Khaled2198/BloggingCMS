@@ -26,7 +26,7 @@
                             <img src="{{asset($post->image)}}" alt="{{$post->title}}" width="90px" height="50px">
                         </td>
                         <td>
-                            <a href="{{route('EditCategory',['id'=>$post->id])}}" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="{{route('EditPost',['id'=>$post->id])}}" class="btn btn-sm btn-primary">Edit</a>
                         </td>
                         <td>
                             <a href="{{route('DeletePost',['id'=>$post->id])}}" class="btn btn-sm btn-danger">Delete</a>

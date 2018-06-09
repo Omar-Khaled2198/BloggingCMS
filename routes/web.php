@@ -53,6 +53,30 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
         'as' => 'DeletedPosts'
     ]);
 
+    Route::get('post/deletePermanently/{id}',[
+
+        'uses' => 'PostController@deletePermanently',
+        'as' => 'DeletePermanently'
+    ]);
+
+    Route::get('post/restore/{id}',[
+
+        'uses' => 'PostController@restore',
+        'as' => 'RestorePost'
+    ]);
+
+    Route::get('post/edit/{id}',[
+
+        'uses' => 'PostController@edit',
+        'as' => 'EditPost'
+    ]);
+
+    Route::post('post/update/{id}',[
+
+        'uses' => 'PostController@update',
+        'as' => 'UpdatePost'
+    ]);
+
     //////////////////////////////////////////////////////////////
 
     Route::get('/category/index',[
@@ -89,6 +113,45 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 
         'uses' => 'CategoryController@destroy',
         'as' => 'DeleteCategory'
+    ]);
+
+    /////////////////////////////////////////////////////////
+
+
+    Route::get('/tag/index',[
+
+        'uses' => 'TagController@index',
+        'as' => 'Tags'
+    ]);
+
+    Route::get('/tag/create',[
+
+        'uses' => 'TagController@create',
+        'as' => 'TagForm'
+    ]);
+
+    Route::post('tag/store',[
+
+        'uses' => 'TagController@store',
+        'as' => 'CreateTag'
+    ]);
+
+    Route::get('/tag/edit/{id}',[
+
+        'uses' => 'TagController@edit',
+        'as' => 'EditTag'
+    ]);
+
+    Route::post('/tag/update/{id}',[
+
+        'uses' => 'TagController@update',
+        'as' => 'UpdateTag'
+    ]);
+
+    Route::get('/tag/delete/{id}',[
+
+        'uses' => 'TagController@destroy',
+        'as' => 'DeleteTag'
     ]);
 
 });

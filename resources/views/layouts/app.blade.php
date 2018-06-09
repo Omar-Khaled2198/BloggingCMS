@@ -83,6 +83,9 @@
                                 <a href="{{route('Categories')}}">Categories</a>
                             </li>
                             <li class="list-group-item">
+                                <a href="{{route('Tags')}}">Tags</a>
+                            </li>
+                            <li class="list-group-item">
                                 <a href="{{route('DeletedPosts')}}">Deleted Posts</a>
                             </li>
                             <li class="list-group-item">
@@ -90,6 +93,9 @@
                             </li>
                             <li class="list-group-item">
                                 <a href="{{route('CategoryForm')}}">Create New Category</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{route('TagForm')}}">Create New Tag</a>
                             </li>
 
                         </ul>
