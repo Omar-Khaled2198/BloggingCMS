@@ -104,6 +104,10 @@ class CategoryController extends Controller
     {
         $category=Category::find($id);
 
+        foreach ($category->posts as $post)
+        {
+            $post->delete();
+        }
         $category->delete();
 
         return redirect()->back();

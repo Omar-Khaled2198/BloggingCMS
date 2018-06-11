@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Profile;
+use Auth;
 use Illuminate\Http\Request;
+use PHPUnit\Runner\AfterIncompleteTestHook;
 
-class UserController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.user.index')->with('users',User::all());
+
     }
 
     /**
@@ -25,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+
     }
 
     /**
@@ -36,30 +37,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-
-            'name'=>'required',
-            'email'=>'required|email',
-            'password'=>'required'
-        ]);
-
-        $user=User::Create([
-
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=>bcrypt($request->password)
-        ]);
-
-        $profile=Profile::create([
-
-            'user_id'=>$user->id,
-            'avatar'=>'upload\avatars\avatar.png'
-        ]);
-
-        return redirect()->back();
-
-
-
+        //
     }
 
     /**
@@ -81,7 +59,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.profile.edit')->with('user',User::find($id));
     }
 
     /**
@@ -93,7 +71,34 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'name'=>'required',
+            'email'=>'required|email',
+            'password'=>'required'
+        ]);
+
+        $user=Auth::user();
+
+        if($request->hasFile('image'))
+        {
+            $avatar=$request->avatar;
+
+            $name=time().$image->getClientOriginalName();
+            $image->move('upload/avatars/',$name);
+            $user->profile->avatar='upload/avatars/'.$name;
+
+        }
+
+        $user->name=$request->name;
+        $user->email=$request->email;
+        $user->password=bcrypt($request->password);
+        $user->profile->facebook=$request->facebook;
+        $user->profile->youtube=$request->youtube;
+        $user->profile->about=$request->about;
+
+        $user->save();
+
+        return redirect()->route('Users');
     }
 
     /**

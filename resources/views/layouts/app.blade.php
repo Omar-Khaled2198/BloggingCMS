@@ -17,7 +17,7 @@
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
-
+    @yield('styles')
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -77,7 +77,13 @@
                                 <a href="{{route('home')}}">Home</a>
                             </li>
                             <li class="list-group-item">
-                                <a href="{{route('Users')}}">Users</a>
+                                <a href="{{route('Users')}}">Admins</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{route('UserForm')}}">Add Admin</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{route('EditProfile',['id'=>$user->id])}}">Edit My Profile</a>
                             </li>
                             <li class="list-group-item">
                                 <a href="{{route('Posts')}}">Posts</a>
@@ -89,10 +95,10 @@
                                 <a href="{{route('Tags')}}">Tags</a>
                             </li>
                             <li class="list-group-item">
-                                <a href="{{route('DeletedPosts')}}">Deleted Posts</a>
+                                <a href="{{route('PostForm')}}">Create New Post</a>
                             </li>
                             <li class="list-group-item">
-                                <a href="{{route('PostForm')}}">Create New Post</a>
+                                <a href="{{route('DeletedPosts')}}">Deleted Posts</a>
                             </li>
                             <li class="list-group-item">
                                 <a href="{{route('CategoryForm')}}">Create New Category</a>
@@ -117,4 +123,5 @@
 
     </div>
 </body>
+    @yield('scripts')
 </html>

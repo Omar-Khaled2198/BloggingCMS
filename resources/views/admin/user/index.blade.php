@@ -6,15 +6,14 @@
 
     <div class="card">
         <div class="card-header">
-            Posts
+            Admins
         </div>
         <div class="card-body">
             <table class="table table-hover">
                 <thead>
                 <th>Image</th>
-                <th>User</th>
-                <th>Edit</th>
-                <th>Remove</th>
+                <th>Name</th>
+                <th>Email</th>
                 </thead>
                 <tbody>
                 @foreach($users as $user)
@@ -25,11 +24,13 @@
                         <td>
                             {{$user->name}}
                         </td>
+                        <td>
+                            {{$user->email}}
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-
 @stop

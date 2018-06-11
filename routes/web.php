@@ -161,4 +161,29 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
         'as' => 'Users'
     ]);
 
+    Route::get('/user/create',[
+
+        'uses' => 'UserController@create',
+        'as' => 'UserForm'
+    ]);
+
+    Route::post('user/store',[
+
+        'uses' => 'UserController@store',
+        'as' => 'CreateAdmin'
+    ]);
+    ///////////////////////////////////////////////////////
+
+    Route::get('/profile/edit/{id}',[
+
+        'uses' => 'ProfileController@edit',
+        'as' => 'EditProfile'
+    ]);
+
+    Route::post('/profile/update/{id}',[
+
+        'uses' => 'ProfileController@update',
+        'as' => 'UpdateProfile'
+    ]);
+
 });
