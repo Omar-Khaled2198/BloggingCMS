@@ -1,4 +1,4 @@
-@extends('layouts.front)
+@extends('layouts.front')
 
 
 
@@ -10,6 +10,7 @@
         <div class="row">
 
             <!-- Post Content Column -->
+
             <div class="col-lg-8">
 
                 <!-- Title -->
@@ -29,7 +30,7 @@
                 <hr>
 
                 <!-- Preview Image -->
-                <img class="img-fluid rounded" src="{{$asset($post->image)}}" alt="">
+                <img class="img-fluid rounded" src="{{asset($post->image)}}" alt="">
 
                 <hr>
 
@@ -39,5 +40,7 @@
                 <hr>
 
             </div>
+        </div>
+    </div>
 
 @stop

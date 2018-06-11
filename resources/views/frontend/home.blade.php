@@ -21,7 +21,7 @@
                         <div class="card-body">
                             <h2 class="card-title">{{$post->title}}</h2>
                             <div class="card-text">{!! $post->content !!}</div>
-                            <a href="#" class="btn btn-primary"></a>
+                            <a href="{{route('GetPost',['id'=>$post->id])}}" class="btn btn-primary">Read More &rarr;</a>
                         </div>
                         <div class="card-footer text-muted">
                             Posted on {{date('M d , Y h:m', strtotime($post->updated_at))}} By

@@ -17,6 +17,12 @@ Route::get('/',[
     'as'=>'Home'
 ]);
 
+Route::get('/post/{id}',[
+
+    'uses'=>'FrontController@post',
+    'as'=>'GetPost'
+]);
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

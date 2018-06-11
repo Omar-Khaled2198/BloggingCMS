@@ -51,6 +51,7 @@
 
 <!-- Page Content -->
 
+
 @yield('content')
 
 
