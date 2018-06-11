@@ -6,10 +6,10 @@
 
     <div class="card">
         <div class="card-header">
-            Update Post Form
+            Update Profile Form
         </div>
         <div class="card-body">
-            <form action="{{route('UpdateProfile',['id'=>$user->id])}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('UpdateProfile',['id'=>$user->id])}}" method="post" onclick="tinyMCE.triggerSave()" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="form-group">
                     <label for="name">Name</label>

@@ -83,7 +83,7 @@
                                 <a href="{{route('UserForm')}}">Add Admin</a>
                             </li>
                             <li class="list-group-item">
-                                <a href="{{route('EditProfile',['id'=>$user->id])}}">Edit My Profile</a>
+                                <a href="{{route('EditProfile',['id'=>Auth::user()->id])}}">Edit My Profile</a>
                             </li>
                             <li class="list-group-item">
                                 <a href="{{route('Posts')}}">Posts</a>

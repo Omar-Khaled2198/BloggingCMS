@@ -9,7 +9,7 @@
             Create Post Form
         </div>
         <div class="card-body">
-            <form action="{{route('CreatePost')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('CreatePost')}}" method="post" onclick="tinyMCE.triggerSave()" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="form-group">
                     <label for="title">Title</label>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="form-group">
                     <label for="content">Content</label>
-                    <textarea type="text" name="content" class="form-control"></textarea>
+                    <textarea type="text" name="content" id="editor" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
                     <div class="text-center">

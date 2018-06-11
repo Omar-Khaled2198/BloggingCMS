@@ -9,7 +9,7 @@
             Update Post Form
         </div>
         <div class="card-body">
-            <form action="{{route('UpdatePost',['id'=>$post->id])}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('UpdatePost',['id'=>$post->id])}}" method="post" onclick="tinyMCE.triggerSave()" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="form-group">
                     <label for="title">Title</label>
@@ -42,7 +42,7 @@
                 @endforeach
                 <div class="form-group">
                     <label for="content">Content</label>
-                    <textarea type="text" name="content" class="form-control">{{$post->content}}</textarea>
+                    <textarea type="text" name="content" id="editor" class="form-control">{{$post->content}}</textarea>
                 </div>
                 <div class="form-group">
                     <div class="text-center">
