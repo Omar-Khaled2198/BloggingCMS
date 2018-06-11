@@ -9,7 +9,7 @@
             Update Post Form
         </div>
         <div class="card-body">
-            <form action="{{route('UpdatePost',['id'=>$post->id])}}" method="post" onclick="tinyMCE.triggerSave()" enctype="multipart/form-data">
+            <form action="{{route('UpdatePost',['id'=>$post->id])}}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="form-group">
                     <label for="title">Title</label>
@@ -57,5 +57,5 @@
 
 @section('scripts')
     <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-    <script>tinymce.init({ selector:'#editor' });</script>
+    <script>tinymce.init({ selector:'textarea' });</script>
 @stop
