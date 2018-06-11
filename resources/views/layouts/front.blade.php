@@ -62,12 +62,13 @@
             <div class="card my-4">
                 <h5 class="card-header">Search</h5>
                 <div class="card-body">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
+                    <form action="{{route('Search')}}" method="post" class="input-group">
+                        {{ csrf_field() }}
+                        <input type="text" name="q" class="form-control" placeholder="Search for...">
                         <span class="input-group-btn">
-                  <button class="btn btn-secondary" type="button">Go!</button>
+                  <button type="submit" class="btn btn-secondary">Search</button>
                 </span>
-                    </div>
+                    </form>
                 </div>
             </div>
 

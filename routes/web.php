@@ -23,6 +23,12 @@ Route::get('/post/{id}',[
     'as'=>'GetPost'
 ]);
 
+Route::post('/search',[
+
+    'uses'=>'FrontController@search',
+    'as'=>"Search"
+]);
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
